@@ -13,12 +13,13 @@ import numpy as np
 
 video_capture = cv2.VideoCapture(0)
 
-mo_image = face_recognition.load_image_file("mo.jpg")
-mo_face_encoding = face_recognition.face_encodings(mo_image)[0]
+# à ajouter la photo de la personne à identifier
+person_image = face_recognition.load_image_file("photos_train/person.jpg")
+person_face_encoding = face_recognition.face_encodings(person_image)[0]
 
 # Create arrays of known face encodings and their names
-known_face_encodings = [mo_face_encoding]
-known_face_names = ["Mokhtar"]
+known_face_encodings = [person_face_encoding]
+known_face_names = ["Person"]
 
 # Initialize some variables
 face_locations = []
