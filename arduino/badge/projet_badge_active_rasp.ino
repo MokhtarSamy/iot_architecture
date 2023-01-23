@@ -39,7 +39,9 @@ int block=1;
  * VID: 1A86
  * PID: 7523
  */
-byte data[16] = {"1A867523"};  
+byte data[16] = {"1A867523"};
+
+char motsdepasse[6] = {'A','M','e','r','T','o'};
 byte read_data[18];
 
 MFRC522 mfrc522(SS_PIN, RST_PIN);
@@ -128,21 +130,6 @@ void givecode(){
 
 boolean getcode() {
   Serial.println("Get input");
-  boolean raspisactivated = false;
-  while(!raspisactivated){
-      //raspisactivated = true;
-      for(int i =0; i<50; i++){
-        Serial.print(digitalRead(RASP_IS_INPUT));
-        Serial.print("  ");
-        Serial.println(digitalRead(RASPINPUT));
-        /*
-        if(digitalRead(RASP_IS_INPUT)!=0 or digitalRead(RASPINPUT)!=0){
-          raspisactivated = false;
-        }*/
-        delay(100);
-      }
-  }
-  Serial.print("isactivated");
   boolean rightcode = true;
   int start = 1;
   for(int i = 0; i<10; i++){
@@ -170,6 +157,12 @@ void loop() {
    
   if(Serial.available() != 0){
     Serial.println("get input var");
+    for(int i =0; i<6; i++){
+      if(Serial.read()!=motsdepasse[i]){
+        return;
+      }
+    }
+    Serial.println("mots passe valider : comand add 1: del 2: read 3");
     int integerVariable = Serial.parseInt();
     if(integerVariable==1){
       Serial.println("Badge the uid to add");
