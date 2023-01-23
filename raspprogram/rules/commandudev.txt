@@ -1,0 +1,5 @@
+#lsblk
+#sudo udevadm control --reload
+/etc/udev/rules.d/my-rules.rules
+
+ACTION==“add”, KERNEL==“sd*", ENV{PRODUCT}==“1b1c/1a03/110”, RUN+="/home/pi/projet1/udev/rule.sh"
