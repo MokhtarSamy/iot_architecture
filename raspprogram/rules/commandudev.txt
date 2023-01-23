@@ -1,5 +1,8 @@
-#lsblk
-#sudo udevadm control --reload
+#lsblk permet d'afficher les different particion
+#sudo udevadm control --reload permet recharger lors de la modification terminer
+
 /etc/udev/rules.d/my-rules.rules
 
-ACTION==“add”, KERNEL==“sd*", ENV{PRODUCT}==“1b1c/1a03/110”, RUN+="/home/pi/projet1/udev/rule.sh"
+ACTION==“add”, KERNEL==“sd*", RUN+="/home/pi/projet1/udev/rule.sh"
+"sd* -> (sdb1,sda1,sdb2 ...) sont de maniere general tous les usb et disk connecter à la rasp 
+on peut preciser ATTRS{product} et ATTRS{manufacturer} pour etre par exemple plus spécifique"
